@@ -5,7 +5,7 @@ import './password-checker';
 class NextApp extends LitElement {
   static get properties() {
     return {
-
+      password: {type: String, attribute: 'password', reflect: true}
     };
   }
 
@@ -15,7 +15,11 @@ class NextApp extends LitElement {
 
   render() {
     return html`
-      <password-checker>
+
+      <label for="pass">Password<label/>
+      <input type="password" @input=${e => this.isValid(e.target.value)} id="pass"/><br/>
+
+      <password-checker .password="this.password">
       </password-checker>
     `;
   }
